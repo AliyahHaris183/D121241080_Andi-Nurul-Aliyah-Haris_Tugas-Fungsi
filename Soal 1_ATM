@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+float saldo = 10000; //saldo awal
+
+//fungsi cek saldo
+float cek_saldo() {
+    return saldo;
+}
+
+//fungsi tarik tunai
+void tarik_tunai(float jumlah) {
+    if (jumlah > saldo)
+        printf("Saldo anda tidak mencukupi.\n");
+    else {
+        saldo -= jumlah;
+        printf("Penarikan berhasil!\n");
+    }
+}
+
+//Fungsi setor tunai
+void setor_tunai(float jumlah) {
+    saldo += jumlah;
+    printf("Setoran berhasil!\n");
+}
+
+//prosedur saldo akhir
+void saldo_akhir() {
+    printf("\nTerima kasih telah menggunakan jasa Aliyah!\nSaldo Akhir: %.2f\n", saldo);
+}
+
+//prosedur menu
+void menu() {
+    int pilihan;
+    float jumlah;
+    char keluar;
+
+    while (1) {
+    printf("\nSelamat datang di ATM sederhana Aliyah!\n1. Cek Saldo\n2. Tarik Tunai\n3. Setor Tunai\n4. Keluar\nPilih: ");
+    scanf("%d", &pilihan);
+
+    if (pilihan == 1)
+        printf("Saldo anda: %.2f\n", cek_saldo());
+    else if (pilihan == 2) {
+        printf("Jumlah penarikan: ");
+        scanf("%f", &jumlah);
+        tarik_tunai(jumlah);
+    }
+    else if (pilihan == 3) {
+        printf("Jumlah setoran: ");
+        scanf("%f", &jumlah);
+        setor_tunai(jumlah);
+    }
+    else if (pilihan == 4) {
+        printf("Yakin ingin keluar? (Y/N): ");
+        scanf(" %c", &keluar);
+        if (keluar == 'Y' || keluar == 'y') {
+            saldo_akhir();
+            return;
+        }
+    }
+    else printf("Input tidak valid!");
+}
+}
+
+//Fungsi utama (main)
+int main () {
+    menu();
+    return 0;
+}
