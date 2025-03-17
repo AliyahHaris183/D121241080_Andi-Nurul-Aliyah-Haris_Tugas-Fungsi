@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+// Fungsi rekursif untuk menghitung faktorial
+int faktorial(int n) {
+    if (n == 0 || n == 1)  // Base case, fungsi berhenti di 0 atau 1
+        return 1;
+    return n * faktorial(n - 1);  // Recursive case
+}
+
+// Fungsi rekursif untuk menghitung Fibonacci
+int fibonacci(int n) {
+    if (n == 0) return 0;  // Base case 1
+    if (n == 1) return 1;  // Base case 2
+    return fibonacci(n - 1) + fibonacci(n - 2);  // Recursive case
+}
+
+// Prosedur untuk menampilkan hasil perhitungan
+void tampilkan_hasil(int angka, int pilihan) 
+    {
+    if (pilihan == 1) {
+        printf("Faktorial dari %d adalah %d\n", angka, faktorial(angka));
+    } else if (pilihan == 2) {
+        printf("Bilangan Fibonacci ke-%d adalah %d\n", angka, fibonacci(angka));
+    } else {
+        printf("Pilihan tidak valid!\n");
+    }
+}
+
+// Fungsi utama (main)
+int main() {
+    int angka, pilihan;
+
+    // Input angka
+    printf("Masukkan angka: ");
+    scanf("%d", &angka);
+
+    // Loop untuk memastikan pilihan valid
+    do {
+        // Pilihan operasi
+        printf("Pilih operasi:\n1. Faktorial\n2. Fibonacci\nPilih: ");
+        scanf("%d", &pilihan);
+
+        // Jika pilihan tidak valid, beri peringatan
+        if (pilihan != 1 && pilihan != 2) {
+            printf("Pilihan tidak valid! Silakan pilih kembali.\n");
+        }
+
+    } while (pilihan != 1 && pilihan != 2); // Ulangi jika pilihan salah
+    
+    // Menampilkan hasil perhitungan
+    tampilkan_hasil(angka, pilihan);
+
+    return 0;
+}
